@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHYSIA PRO · garment set &amp; placement</title>
+<style>
+  :root{--bg:#08090B;--surface:#111318;--surface-2:#171A20;--ink:#EAE7DF;--muted:#93908A;--faint:#63615C;
+    --hair:rgba(234,231,223,0.10);--hair-2:rgba(234,231,223,0.06);--cy:#6FD3C7;--am:#E0A33E;--gr:#7FB89E;--br:#B7975E;--rd:#D2544B;
+    --display:"Helvetica Neue",Helvetica,Arial,sans-serif;--body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{background:radial-gradient(120% 90% at 50% -10%,#15181E 0%,#08090B 55%,#06070A 100%),var(--bg);
+    color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;min-height:100vh;padding:clamp(16px,3.5vw,44px);}
+  .wrap{max-width:1200px;margin:0 auto;}
+  header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--hair);}
+  .brandline{display:flex;align-items:baseline;gap:12px;}
+  .logo{font-family:var(--display);font-weight:800;font-size:clamp(22px,4vw,34px);letter-spacing:-0.02em;}
+  .logo b{color:var(--br);} .logo span{color:var(--cy);}
+  .verstamp{font-family:var(--mono);font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);border:1px solid var(--hair);border-radius:100px;padding:5px 11px;}
+  .kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cy);margin:0 0 7px;}
+  .lede{font-family:var(--display);font-weight:600;font-size:clamp(13.5px,1.6vw,16px);color:var(--ink);max-width:48ch;line-height:1.42;margin:0;}
+  .lede em{color:var(--muted);font-style:normal;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:13px 20px;align-items:flex-end;margin-bottom:15px;}
+  .ctl{display:flex;flex-direction:column;gap:6px;}
+  .ctl-lab{font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);}
+  .seg{display:flex;gap:6px;flex-wrap:wrap;}
+  .seg button{appearance:none;cursor:pointer;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--muted);background:var(--surface-2);
+    border:1px solid var(--hair);border-radius:8px;padding:8px 12px;transition:all .15s ease;display:flex;align-items:center;gap:6px;}
+  .seg button:hover{color:var(--ink);border-color:rgba(111,211,199,0.45);}
+  .seg button .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.55;}
+  .seg button.active{color:#08090B;background:var(--cy);border-color:var(--cy);}
+  .seg button.active .dot{opacity:1;background:#08090B;}
+  .seg button[data-o].active{background:var(--tint,var(--cy));border-color:var(--tint,var(--cy));}
+  .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(16px,2.6vw,30px);align-items:start;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr;}}
+  .stage{position:relative;background:linear-gradient(180deg,#0F1116 0%,#0B0D11 100%);border:1px solid var(--hair);border-radius:16px;padding:10px;overflow:hidden;}
+  .stage svg{display:block;width:100%;height:auto;}
+  .badge{position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--hair);border-radius:100px;padding:5px 11px;background:rgba(8,9,11,0.55);}
+  .badge b{color:var(--cy);}
+  .side{display:flex;flex-direction:column;gap:12px;}
+  .card{background:linear-gradient(180deg,var(--surface) 0%,#0E1015 100%);border:1px solid var(--hair);border-radius:13px;padding:15px 15px 13px;}
+  .card h3{font-family:var(--mono);font-size:10.5px;letter-spacing:0.17em;text-transform:uppercase;color:var(--cy);margin:0 0 12px;}
+  .card p{margin:0;font-size:12.4px;line-height:1.5;color:var(--muted);} .card p+p{margin-top:8px;} .card b{color:var(--ink);font-weight:600;}
+  .legend{display:flex;flex-direction:column;gap:8px;}
+  .lg{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
+  .sw{width:16px;height:16px;border-radius:5px;flex:none;border:1px solid var(--hair);}
+  .tel{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .met{border:1px solid var(--hair);border-radius:9px;padding:8px 10px;background:var(--surface-2);}
+  .met .k{font-family:var(--mono);font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);}
+  .met .v{font-family:var(--display);font-weight:800;font-size:19px;margin-top:2px;} .met .u{font-size:9.5px;color:var(--faint);font-weight:400;margin-left:2px;}
+  .bar{height:4px;border-radius:3px;background:#22262C;margin-top:6px;overflow:hidden;} .bar i{display:block;height:100%;background:var(--cy);width:40%;transition:width .3s ease;}
+  .warn i{background:var(--am);} .crit i{background:var(--rd);}
+  .safe{border-color:rgba(210,84,75,0.35);} .safe h3{color:#E08078;}
+  table.pl{width:100%;border-collapse:collapse;font-size:11px;}
+  table.pl td{padding:4px 6px;border-top:1px solid var(--hair-2);color:var(--muted);vertical-align:top;}
+  table.pl td:first-child{color:var(--ink);white-space:nowrap;font-family:var(--mono);font-size:10px;}
+  .foot{margin-top:24px;padding-top:15px;border-top:1px solid var(--hair);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:9.5px;color:var(--faint);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brandline"><div class="logo">PHY<b>S</b>IA <span>PRO</span></div><div class="verstamp">garment set · placement · concept</div></div>
+    <div>
+      <p class="kicker">Training · compression base layer</p>
+      <p class="lede">Long &amp; short tops, shorts &amp; tights — with the sensor map for each. <em>Torso carries ECG + respiration; legs carry EMG + gait. Long sleeve and tights unlock forearm and shank sensors.</em></p>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="ctl"><span class="ctl-lab">View</span>
+      <div class="seg" id="angleSeg"><button class="active" data-a="front">Front</button><button data-a="back">Back</button></div></div>
+    <div class="ctl"><span class="ctl-lab">Top</span>
+      <div class="seg" id="sleeveSeg"><button class="active" data-v="short">Short sleeve</button><button data-v="long">Long sleeve</button></div></div>
+    <div class="ctl"><span class="ctl-lab">Bottom</span>
+      <div class="seg" id="lenSeg"><button class="active" data-v="shorts">Shorts</button><button data-v="pants">Tights</button></div></div>
+    <div class="ctl"><span class="ctl-lab">Sensors</span>
+      <div class="seg" id="ovSeg">
+        <button class="active" data-o="bio" style="--tint:#6FD3C7">Bio</button>
+        <button class="active" data-o="imu" style="--tint:#E0A33E">IMU</button>
+        <button class="active" data-o="emg" style="--tint:#7FB89E">EMG</button>
+        <button class="active" data-o="uwb" style="--tint:#B7975E">UWB</button>
+        <button class="active" data-o="hap" style="--tint:#D2544B">Haptic</button>
+      </div></div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="stage">
+        <div class="badge">VIEW · <b id="angleName">FRONT</b></div>
+        <svg viewBox="0 0 700 490" role="img" aria-label="Physia Pro garment set with sensor placement">
+          <defs>
+            <linearGradient id="comp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#252A32"/><stop offset="1" stop-color="#171B21"/></linearGradient>
+            <linearGradient id="compB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20242B"/><stop offset="1" stop-color="#14171C"/></linearGradient>
+            <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="8"/></filter>
+            <filter id="grain" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
+            <clipPath id="cTF"><path d="M180 52 C170 50 158 52 150 58 C140 61 128 64 118 68 C122 88 126 106 128 118 C130 160 132 210 136 256 C137 275 139 292 142 300 C160 305 200 305 218 300 C221 292 223 275 224 256 C228 210 230 160 232 118 C234 106 238 88 242 68 C232 64 220 61 210 58 C202 52 190 50 180 52 Z"/></clipPath><clipPath id="shortsCut"><rect x="78" y="0" width="204" height="248"/></clipPath>
+          </defs>
+          <ellipse cx="185" cy="322" rx="88" ry="10" fill="#000" opacity="0.5" filter="url(#soft)"/>
+          <ellipse cx="540" cy="470" rx="80" ry="10" fill="#000" opacity="0.5" filter="url(#soft)"/>
+          <g id="topSlot" transform="translate(4,18) scale(0.9)"><g class="figure" id="top-front"><path d="M180 52 C170 50 158 52 150 58 C140 61 128 64 118 68 C122 88 126 106 128 118 C130 160 132 210 136 256 C137 275 139 292 142 300 C160 305 200 305 218 300 C221 292 223 275 224 256 C228 210 230 160 232 118 C234 106 238 88 242 68 C232 64 220 61 210 58 C202 52 190 50 180 52 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.6"/><rect x="0" y="0" width="700" height="480" fill="#C9CED6" filter="url(#grain)" clip-path="url(#cTF)"/><path d="M150 58 C162 70 198 70 210 58" fill="none" stroke="#0A0B0E" stroke-width="3" opacity="0.85"/><line x1="180" y1="70" x2="180" y2="300" stroke="#0A0B0E" stroke-width="0.6" opacity="0.3"/><g class="sleeve-short"><path d="M118 68 C104 72 94 86 90 108 C96 116 106 120 118 121 C122 119 126 119 128 118 C122 106 120 86 118 68 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.4"/><path d="M242 68 C256 72 266 86 270 108 C264 116 254 120 242 121 C238 119 234 119 232 118 C238 106 240 86 242 68 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.4"/><g class="ov-emg"><rect x="99" y="92" width="9" height="20" rx="4.5" fill="none" stroke="#7FB89E" stroke-width="1.8" opacity="0.9"/><text x="96" y="104" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG bicep</text></g><g class="ov-emg"><rect x="252" y="92" width="9" height="20" rx="4.5" fill="none" stroke="#7FB89E" stroke-width="1.8" opacity="0.9"/></g></g><g class="sleeve-long" style="display:none"><path d="M118 68 C102 74 86 100 80 150 C76 188 76 240 80 288 C82 296 86 300 92 301 L114 299 C116 292 116 282 116 272 C118 230 122 168 128 118 C122 106 120 86 118 68 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.4"/><path d="M242 68 C258 74 274 100 280 150 C284 188 284 240 280 288 C278 296 274 300 268 301 L246 299 C244 292 244 282 244 272 C242 230 238 168 232 118 C238 106 240 86 242 68 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.4"/><g class="ov-imu"><rect x="89" y="257" width="14" height="10" rx="3" fill="#E0A33E"/><text x="85" y="264.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="end">IMU forearm</text><rect x="257" y="257" width="14" height="10" rx="3" fill="#E0A33E"/></g><g class="ov-hap"><circle cx="96" cy="290" r="7" fill="none" stroke="#D2544B" stroke-width="2"/><circle cx="96" cy="290" r="2" fill="#D2544B"/><text x="85" y="292.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#D2544B" text-anchor="end">haptic wrist</text><circle cx="264" cy="290" r="7" fill="none" stroke="#D2544B" stroke-width="2"/><circle cx="264" cy="290" r="2" fill="#D2544B"/></g></g><g class="ov-bio"><circle cx="152" cy="118" r="4.6" fill="#6FD3C7"/><circle cx="152" cy="118" r="8" fill="none" stroke="#6FD3C7" stroke-width="0.9" opacity="0.45"/><text x="141" y="120.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="end">ECG-1</text><circle cx="208" cy="118" r="4.6" fill="#6FD3C7"/><circle cx="208" cy="118" r="8" fill="none" stroke="#6FD3C7" stroke-width="0.9" opacity="0.45"/><text x="219" y="120.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start">ECG-2</text><circle cx="214" cy="236" r="4.6" fill="#6FD3C7"/><circle cx="214" cy="236" r="8" fill="none" stroke="#6FD3C7" stroke-width="0.9" opacity="0.45"/><text x="225" y="238.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start">ref (hip)</text><path d="M130 134 C155 144 205 144 230 134" fill="none" stroke="#6FD3C7" stroke-width="2.4" opacity="0.85" stroke-dasharray="6 4"/><text x="100" y="130" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start">RIP thorax</text><path d="M132 182 C155 192 205 192 228 182" fill="none" stroke="#6FD3C7" stroke-width="2.4" opacity="0.85" stroke-dasharray="6 4"/><text x="100" y="186" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start">RIP abdomen</text></g><g class="ov-imu"><rect x="173" y="145" width="14" height="10" rx="3" fill="#E0A33E"/><text x="191" y="152.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="start">IMU sternum</text></g><g class="ov-uwb"><path d="M123 87 L141 85 L141 99 L123 97 Z" fill="none" stroke="#B7975E" stroke-width="1.8"/><text x="119" y="94.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#B7975E" text-anchor="end">UWB</text><path d="M219 87 L237 85 L237 99 L219 97 Z" fill="none" stroke="#B7975E" stroke-width="1.8"/></g><g class="ov-hap"><circle cx="180" cy="168" r="7" fill="none" stroke="#D2544B" stroke-width="2"/><circle cx="180" cy="168" r="2" fill="#D2544B"/><text x="191" y="170.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#D2544B" text-anchor="start">haptic chest</text></g><text x="180" y="314" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7E7B73" text-anchor="middle">COMPRESSION TOP — FRONT</text></g><g class="figure" id="top-back" style="display:none"><path d="M180 52 C170 50 158 52 150 58 C140 61 128 64 118 68 C122 88 126 106 128 118 C130 160 132 210 136 256 C137 275 139 292 142 300 C160 305 200 305 218 300 C221 292 223 275 224 256 C228 210 230 160 232 118 C234 106 238 88 242 68 C232 64 220 61 210 58 C202 52 190 50 180 52 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.6"/><path d="M152 58 C163 66 197 66 208 58" fill="none" stroke="#0A0B0E" stroke-width="2.6" opacity="0.85"/><g class="sleeve-short"><path d="M118 68 C104 72 94 86 90 108 C96 116 106 120 118 121 C122 119 126 119 128 118 C122 106 120 86 118 68 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.4"/><path d="M242 68 C256 72 266 86 270 108 C264 116 254 120 242 121 C238 119 234 119 232 118 C238 106 240 86 242 68 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.4"/></g><g class="sleeve-long" style="display:none"><path d="M118 68 C102 74 86 100 80 150 C76 188 76 240 80 288 C82 296 86 300 92 301 L114 299 C116 292 116 282 116 272 C118 230 122 168 128 118 C122 106 120 86 118 68 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.4"/><path d="M242 68 C258 74 274 100 280 150 C284 188 284 240 280 288 C278 296 274 300 268 301 L246 299 C244 292 244 282 244 272 C242 230 238 168 232 118 C238 106 240 86 242 68 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.4"/><g class="ov-imu"><rect x="89" y="257" width="14" height="10" rx="3" fill="#E0A33E"/><text x="85" y="264.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="end">IMU wrist</text><rect x="257" y="257" width="14" height="10" rx="3" fill="#E0A33E"/></g></g><g class="ov-bio"><path d="M130 134 C155 144 205 144 230 134" fill="none" stroke="#6FD3C7" stroke-width="2.4" opacity="0.85" stroke-dasharray="6 4"/><text x="100" y="130" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start">RIP wrap</text><path d="M132 182 C155 192 205 192 228 182" fill="none" stroke="#6FD3C7" stroke-width="2.4" opacity="0.85" stroke-dasharray="6 4"/><text x="0" y="0" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#6FD3C7" text-anchor="start"></text></g><g class="ov-imu"><rect x="173" y="107" width="14" height="10" rx="3" fill="#E0A33E"/><text x="191" y="114.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="start">IMU scapula (T3–T5)</text></g><g class="ov-uwb"><path d="M171 83 L189 81 L189 95 L171 93 Z" fill="none" stroke="#B7975E" stroke-width="1.8"/><text x="193" y="90.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#B7975E" text-anchor="start">UWB back</text></g><rect x="167" y="105" width="26" height="14" rx="4" fill="#0C0D10" stroke="#33383F" stroke-width="0.8"/><circle cx="172" cy="112" r="1.5" fill="#B7975E"/><circle cx="178" cy="112" r="1.5" fill="#3A3E46"/><circle cx="184" cy="112" r="1.5" fill="#3A3E46"/><circle cx="190" cy="112" r="1.5" fill="#3A3E46"/><text x="180" y="314" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7E7B73" text-anchor="middle">COMPRESSION TOP — BACK · module dock T3–T5</text></g></g>
+          <g id="botSlot" transform="translate(352,4) scale(0.9)"><g class="figure" id="bottom-front" style="display:none"><g class="bwrap"><path d="M118 34 L242 34 C250 34 254 40 253 49 L256 108 C258 130 253 200 248 270 C244 340 240 400 234 436 C232 446 230 452 228 455 L204 455 C202 444 199 424 196 380 C193 312 189 236 186 158 C183 236 179 312 176 380 C173 424 170 444 168 455 L144 455 C142 452 140 446 138 436 C132 400 128 340 124 270 C119 200 114 130 116 108 L117 49 C116 40 120 34 118 34 Z" fill="url(#comp)" stroke="#0A0B0E" stroke-width="1.6"/><line x1="180" y1="50" x2="180" y2="158" stroke="#0A0B0E" stroke-width="0.6" opacity="0.3"/><g class="ov-emg"><rect x="143.5" y="158.0" width="13" height="64" rx="6.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="145.5" y="161.0" width="9" height="58" rx="4.5" fill="#7FB89E" opacity="0.14"/><text x="138.5" y="192.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG quad</text><rect x="203.5" y="158.0" width="13" height="64" rx="6.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="205.5" y="161.0" width="9" height="58" rx="4.5" fill="#7FB89E" opacity="0.14"/></g><g class="ov-imu"><rect x="143" y="145" width="14" height="10" rx="3" fill="#E0A33E"/><text x="139" y="152.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="end">IMU thigh</text><rect x="203" y="145" width="14" height="10" rx="3" fill="#E0A33E"/></g><g class="ov-hap"><circle cx="150" cy="250" r="7" fill="none" stroke="#D2544B" stroke-width="2"/><circle cx="150" cy="250" r="2" fill="#D2544B"/><text x="139" y="252.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#D2544B" text-anchor="end">haptic</text><circle cx="210" cy="250" r="7" fill="none" stroke="#D2544B" stroke-width="2"/><circle cx="210" cy="250" r="2" fill="#D2544B"/></g><g class="ov-imu"><rect x="173" y="47" width="14" height="10" rx="3" fill="#E0A33E"/><text x="191" y="54.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="start">IMU pelvis (waistband)</text></g><g class="leg-pants"><g class="ov-strain"><path d="M136 318 l5 -5 l5 10 l5 -10 l5 10 l5 -5" fill="none" stroke="#7FB89E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="172" y="320.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="start">knee flex</text><path d="M196 318 l5 -5 l5 10 l5 -10 l5 10 l5 -5" fill="none" stroke="#7FB89E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="ov-imu"><rect x="143" y="373" width="14" height="10" rx="3" fill="#E0A33E"/><text x="139" y="380.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="end">IMU shank</text><rect x="203" y="373" width="14" height="10" rx="3" fill="#E0A33E"/></g><g class="ov-emg"><rect x="145.0" y="375.0" width="10" height="40" rx="5.0" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="147.0" y="378.0" width="6" height="34" rx="3.0" fill="#7FB89E" opacity="0.14"/><text x="140.0" y="397.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG tib.</text><rect x="205.0" y="375.0" width="10" height="40" rx="5.0" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="207.0" y="378.0" width="6" height="34" rx="3.0" fill="#7FB89E" opacity="0.14"/></g></g></g><g class="hem-band" style="display:none"><rect x="122" y="238" width="60" height="12" rx="4" fill="#141920" stroke="#0A0B0E" stroke-width="1.2"/><rect x="182" y="238" width="60" height="12" rx="4" fill="#141920" stroke="#0A0B0E" stroke-width="1.2"/></g><text x="180" y="468" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7E7B73" text-anchor="middle">COMPRESSION BOTTOM — FRONT</text></g><g class="figure" id="bottom-back" style="display:none"><g class="bwrap"><path d="M118 34 L242 34 C250 34 254 40 253 49 L256 108 C258 130 253 200 248 270 C244 340 240 400 234 436 C232 446 230 452 228 455 L204 455 C202 444 199 424 196 380 C193 312 189 236 186 158 C183 236 179 312 176 380 C173 424 170 444 168 455 L144 455 C142 452 140 446 138 436 C132 400 128 340 124 270 C119 200 114 130 116 108 L117 49 C116 40 120 34 118 34 Z" fill="url(#compB)" stroke="#0A0B0E" stroke-width="1.6"/><path d="M180 40 C176 90 176 120 180 158" fill="none" stroke="#0A0B0E" stroke-width="1" opacity="0.4"/><g class="ov-emg"><rect x="143.5" y="167.0" width="13" height="66" rx="6.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="145.5" y="170.0" width="9" height="60" rx="4.5" fill="#7FB89E" opacity="0.14"/><text x="138.5" y="202.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG hamstring</text><rect x="203.5" y="167.0" width="13" height="66" rx="6.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="205.5" y="170.0" width="9" height="60" rx="4.5" fill="#7FB89E" opacity="0.14"/></g><g class="ov-emg"><rect x="152.5" y="95.0" width="15" height="30" rx="7.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="154.5" y="98.0" width="11" height="24" rx="5.5" fill="#7FB89E" opacity="0.14"/><text x="147.5" y="112.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG glute</text><rect x="192.5" y="95.0" width="15" height="30" rx="7.5" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="194.5" y="98.0" width="11" height="24" rx="5.5" fill="#7FB89E" opacity="0.14"/></g><g class="ov-imu"><rect x="173" y="61" width="14" height="10" rx="3" fill="#E0A33E"/><text x="191" y="68.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="start">IMU sacrum (gait)</text></g><g class="leg-pants"><g class="ov-emg"><rect x="144.0" y="371.0" width="12" height="48" rx="6.0" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="146.0" y="374.0" width="8" height="42" rx="4.0" fill="#7FB89E" opacity="0.14"/><text x="139.0" y="397.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7FB89E" text-anchor="end">EMG calf</text><rect x="204.0" y="371.0" width="12" height="48" rx="6.0" fill="none" stroke="#7FB89E" stroke-width="2" opacity="0.9"/><rect x="206.0" y="374.0" width="8" height="42" rx="4.0" fill="#7FB89E" opacity="0.14"/></g><g class="ov-imu"><rect x="143" y="355" width="14" height="10" rx="3" fill="#E0A33E"/><text x="139" y="362.5" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#E0A33E" text-anchor="end">IMU shank</text><rect x="203" y="355" width="14" height="10" rx="3" fill="#E0A33E"/></g></g><rect x="167" y="43" width="26" height="14" rx="4" fill="#0C0D10" stroke="#33383F" stroke-width="0.8"/><circle cx="172" cy="50" r="1.5" fill="#B7975E"/><circle cx="178" cy="50" r="1.5" fill="#3A3E46"/><circle cx="184" cy="50" r="1.5" fill="#3A3E46"/><circle cx="190" cy="50" r="1.5" fill="#3A3E46"/></g><g class="hem-band" style="display:none"><rect x="122" y="238" width="60" height="12" rx="4" fill="#141920" stroke="#0A0B0E" stroke-width="1.2"/><rect x="182" y="238" width="60" height="12" rx="4" fill="#141920" stroke="#0A0B0E" stroke-width="1.2"/></g><text x="180" y="468" font-family="ui-monospace,Menlo,monospace" font-size="7.6" fill="#7E7B73" text-anchor="middle">COMPRESSION BOTTOM — BACK · dock at waistband</text></g></g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h3>Live telemetry (simulated)</h3>
+        <div class="tel">
+          <div class="met"><div class="k">Heart rate</div><div class="v"><span id="hr">146</span><span class="u">bpm</span></div><div class="bar" id="hrBar"><i style="width:60%"></i></div></div>
+          <div class="met"><div class="k">Breathing</div><div class="v"><span id="rr">31</span><span class="u">rpm</span></div><div class="bar" id="rrBar"><i style="width:46%"></i></div></div>
+          <div class="met"><div class="k">Neuro load</div><div class="v"><span id="load">58</span><span class="u">%</span></div><div class="bar" id="loadBar"><i style="width:58%"></i></div></div>
+          <div class="met"><div class="k">L/R asym</div><div class="v"><span id="asym">3.8</span><span class="u">%</span></div><div class="bar" id="asymBar"><i style="width:19%"></i></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="plTitle">Placement — short sleeve · shorts</h3>
+        <table class="pl" id="plTable"></table>
+      </div>
+
+      <div class="card">
+        <h3>Sensor key</h3>
+        <div class="legend">
+          <div class="lg"><span class="sw" style="background:#6FD3C7"></span>Bio — ECG 256 Hz, RIP 128 Hz (needs compression)</div>
+          <div class="lg"><span class="sw" style="background:#E0A33E"></span>IMU — 416 Hz kinematics</div>
+          <div class="lg"><span class="sw" style="background:#7FB89E"></span>EMG — muscle activation + fatigue proxy</div>
+          <div class="lg"><span class="sw" style="background:#B7975E"></span>UWB — DWM3000 tags, ~10 cm</div>
+          <div class="lg"><span class="sw" style="background:#D2544B"></span>Haptic — silent snap-count / route cue</div>
+        </div>
+      </div>
+
+      <div class="card safe">
+        <h3>Safety &amp; scope</h3>
+        <p><b>Compression is required</b> for ECG/RIP — they do not work through a loose jersey. Bio lives on the base layer.</p>
+        <p><b>The garment is not a safety device.</b> The throwing machine stops via an independent hardwired E-stop, never via Bluetooth or an electrode. Biometrics inhibit or trim only.</p>
+        <p><b>Training use only.</b> Not game-worn. Wellness signals — not a medical device.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>PHYSIA PRO · compression base layer + sensor placement — concept</span>
+    <span>Telemetry simulated · not a medical device · not for game use</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s);};
+  var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var st={angle:"front", top:"short", bot:"shorts", ov:{bio:true,imu:true,emg:true,uwb:true,hap:true}};
+
+  var PLACE={
+    "top-short":[["ECG ×2 + ref","upper pectorals + right hip — 1-lead 256 Hz"],["RIP ×2","thorax + abdomen bands — 128 Hz"],["IMU sternum","chest kinematics 416 Hz"],["EMG bicep","short-sleeve only, mid-bicep"],["UWB ×2","shoulders (+1 back = heading)"],["Haptic","chest LRA — snap-count"],["Dock","upper back yoke, T3–T5"]],
+    "top-long":[["ECG ×2 + ref","upper pectorals + right hip — 256 Hz"],["RIP ×2","thorax + abdomen — 128 Hz"],["IMU sternum","chest 416 Hz"],["IMU forearm ×2","wrist — arm-swing / catch mechanics"],["UWB ×2","shoulders"],["Haptic wrist ×2","snap-count on the wrist"],["Dock","T3–T5"]],
+    "bot-shorts":[["EMG quad ×2","rectus femoris — thigh load"],["EMG hamstring ×2","posterior thigh (back)"],["EMG glute ×2","back — hip drive"],["IMU thigh ×2","segment kinematics"],["IMU pelvis","waistband front"],["IMU sacrum","waistband back — gait/asymmetry"],["Haptic ×2","thigh — route cue"]],
+    "bot-pants":[["EMG quad + hamstring","thigh, front + back"],["EMG calf ×2","gastrocnemius (back)"],["Knee strain ×2","flexion angle + valgus (injury risk)"],["IMU shank ×2","tibia — ground-contact timing"],["IMU thigh + sacrum","full lower-limb chain"],["Gait","L/R asymmetry, stride, contact time"],["Haptic ×2","thigh"]]
+  };
+  function renderPlace(){
+    var tk="top-"+st.top, bk="bot-"+st.bot;
+    $("#plTitle").textContent="Placement — "+(st.top==="short"?"short sleeve":"long sleeve")+" · "+(st.bot==="shorts"?"shorts":"tights");
+    var rows=PLACE[tk].concat(PLACE[bk]);
+    $("#plTable").innerHTML=rows.map(function(r){return "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>";}).join("");
+  }
+  function applyAngle(){
+    ["top","bottom"].forEach(function(g){
+      ["front","back"].forEach(function(a){ var f=$("#"+g+"-"+a); if(f) f.style.display=(a===st.angle)?"block":"none"; });
+    });
+    $("#angleName").textContent=st.angle.toUpperCase();
+    applyVariant();
+  }
+  function applyVariant(){
+    $$("#topSlot .sleeve-short").forEach(function(e){e.style.display=st.top==="short"?"block":"none";});
+    $$("#topSlot .sleeve-long").forEach(function(e){e.style.display=st.top==="long"?"block":"none";});
+    var shorts=st.bot==="shorts";
+    $$("#botSlot .bwrap").forEach(function(e){ if(shorts) e.setAttribute("clip-path","url(#shortsCut)"); else e.removeAttribute("clip-path"); });
+    $$("#botSlot .hem-band").forEach(function(e){e.style.display=shorts?"block":"none";});
+    $$("#botSlot .leg-pants").forEach(function(e){e.style.display=shorts?"none":"block";});
+    applyOv();
+  }
+  function applyOv(){
+    ["bio","imu","emg","uwb","hap"].forEach(function(k){
+      $$(".ov-"+k).forEach(function(e){ e.style.display=st.ov[k]?"block":"none"; });
+    });
+  }
+  $("#angleSeg").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.angle=b.dataset.a;
+    $$("#angleSeg button").forEach(function(x){x.classList.remove("active");});b.classList.add("active");applyAngle();});
+  $("#sleeveSeg").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.top=b.dataset.v;
+    $$("#sleeveSeg button").forEach(function(x){x.classList.remove("active");});b.classList.add("active");applyVariant();renderPlace();});
+  $("#lenSeg").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;st.bot=b.dataset.v;
+    $$("#lenSeg button").forEach(function(x){x.classList.remove("active");});b.classList.add("active");applyVariant();renderPlace();});
+  $("#ovSeg").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var k=b.dataset.o;st.ov[k]=!st.ov[k];
+    b.classList.toggle("active",st.ov[k]);applyOv();});
+
+  // telemetry sim
+  var t=0,hr=146,rr=31,load=58,asym=3.8;
+  function setBar(id,pct,cls){var el=$(id);el.className="bar"+(cls?" "+cls:"");el.firstElementChild.style.width=Math.max(3,Math.min(100,pct))+"%";}
+  function tick(){
+    t+=0.1;
+    hr+= Math.sin(t*0.7)*1.3+(Math.random()-0.45)*1.5; hr=Math.max(96,Math.min(190,hr));
+    rr+= Math.sin(t*0.9)*0.5+(Math.random()-0.5)*0.7; rr=Math.max(14,Math.min(50,rr));
+    load+= Math.sin(t*0.28)*0.8+(Math.random()-0.42)*0.9; load=Math.max(20,Math.min(95,load));
+    asym+= (Math.random()-0.5)*0.25+(load>80?0.05:-0.02); asym=Math.max(0.6,Math.min(13,asym));
+    $("#hr").textContent=Math.round(hr);$("#rr").textContent=Math.round(rr);$("#load").textContent=Math.round(load);$("#asym").textContent=asym.toFixed(1);
+    setBar("#hrBar",(hr-90)/(195-90)*100,hr>178?"crit":(hr>162?"warn":""));
+    setBar("#rrBar",(rr-12)/(52-12)*100,rr>42?"warn":"");
+    setBar("#loadBar",load,load>85?"crit":(load>72?"warn":""));
+    setBar("#asymBar",asym/13*100,asym>8?"crit":(asym>5.5?"warn":""));
+  }
+  applyAngle(); renderPlace(); tick();
+  if(!reduce) setInterval(tick,180);
+})();
+</script>
+</body></html>
